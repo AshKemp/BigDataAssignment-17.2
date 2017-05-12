@@ -1,0 +1,30 @@
+Problem 1:
+Create an HBase table named 'clicks' with a column family 'hits' such that it should be able to
+store last 5 values of qualifiers inside 'hits' column family.
+
+hbase> create 'clicks',{NAME=>hits,Versions=>5}
+
+Problem 2:
+Add few records in the table and update some of them. Use IP Address as row-key. Scan the
+table to view if all the previous versions are getting displayed.
+
+Syntax for adding records into a table
+put ’<table name>’,’row1’,’<colfamily:colname>’,’<value>’
+
+put 'clicks','1','hits:name','Akshay'
+put 'clicks','1','hits:id','1'
+
+put 'clicks','2','hits:name','Kumar'
+put 'clicks','1','hits:id','2'
+
+scan 'clicks'
+
+Syntax for updating records into a table
+put ‘table name’,’row ’,'Column family:column name',’new value’
+
+put 'clicks','1','hits:name','Akshar Patel'
+put 'clicks','1','hits:id','3'
+
+rowKey = '192.168.4.1'
+
+scan 'clicks'
